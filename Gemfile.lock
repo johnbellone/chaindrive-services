@@ -63,6 +63,9 @@ GEM
     rack-protection (1.5.0)
       rack
     sequel (4.0.0)
+    sequel_pg (1.6.7)
+      pg (>= 0.8.0)
+      sequel (>= 3.39.0)
     sinatra (1.4.3)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -90,6 +93,7 @@ DEPENDENCIES
   omniauth-github
   pg
   puma
+  sequel_pg
   sinatra
   sinatra-sequel
   sqlite3
