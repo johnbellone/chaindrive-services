@@ -1,3 +1,6 @@
+require 'grape'
+require 'chaindrive/database'
+
 module Chaindrive
   class API < Grape::API
     version 'v1'
