@@ -11,8 +11,12 @@ GEM
     backports (3.3.3)
     builder (3.2.2)
     descendants_tracker (0.0.1)
+    dotenv (0.8.0)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
+    foreman (0.63.0)
+      dotenv (>= 0.7)
+      thor (>= 0.13.6)
     grape (0.5.0)
       activesupport
       builder
@@ -47,11 +51,14 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
+    puma (2.4.0)
+      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-accept (0.4.5)
       rack (>= 0.4)
     rack-mount (0.8.3)
       rack (>= 1.0.0)
+    thor (0.18.1)
     thread_safe (0.1.2)
       atomic
     tzinfo (0.3.37)
@@ -63,6 +70,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  foreman
   grape
   omniauth-github
-  rack
+  puma
