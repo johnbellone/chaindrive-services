@@ -17,7 +17,7 @@ module Chaindrive
       end
 
       get ':id' do
-        Gear.where(:name => params[:id], :status => true)
+        Gear.where(:name => params[:id], :status => true).order(:created_at).limit(1)
       end
 
       get ':id/version/:version' do
