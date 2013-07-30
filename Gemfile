@@ -5,4 +5,5 @@ gem 'grape'
 gem 'omniauth-github'
 gem 'puma'
 gem 'foreman'
-
+gem 'sinatra'
+gem 'sinatra-sequel'
