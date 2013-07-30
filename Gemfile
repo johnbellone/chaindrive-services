@@ -7,3 +7,6 @@ gem 'puma'
 gem 'foreman'
 gem 'sinatra'
 gem 'sinatra-sequel'
+gem 'pg'
+gem 'sqlite3', :group => :development
+
