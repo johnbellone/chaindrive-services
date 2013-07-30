@@ -1,5 +1,5 @@
-require 'api/database'
-require 'api/chaindrive'
+require 'chaindrive/api'
+require 'chaindrive/web'
 
 use Rack::Session::Cookie
-run Chaindrive::API
+run Rack::Cascade.new [Chaindrive::API, Chaindrive::Web]
