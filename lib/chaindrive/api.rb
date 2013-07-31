@@ -4,7 +4,7 @@ module Chaindrive
 
     # Provide authentication with GitHub so that we can properly use the API there
     # once someone adds a Gear to the registry. 
-    use Omniauth::Builder do 
+    use ::OmniAuth::Builder do 
       provider :developer unless ENV['RACK_ENV'] == 'production'
       provider :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET']
     end
