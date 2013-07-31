@@ -14,17 +14,17 @@ module Chaindrive
 
     namespace :users do
       get do
-        User.all
+        present User.all
       end
 
       get ':id' do
         compare_etag(Time.now.day)
-        User.first(:name => params[:id])
+        present User.first(:name => params[:id])
       end
 
       get ':id/gears' do
         compare_etag(Time.now.day)
-        User.first(:name => params[:id]).gears.all
+        present User.first(:name => params[:id]).gears.all
       end
     end
     
@@ -32,14 +32,14 @@ module Chaindrive
       desc "Return all gears inside the registry."
       get do
         compare_etag(Time.now.day)
-        Gear.all
+        present Gear.all
       end
 
       desc "Return the Gear with specified `id`."
       get ':id' do
         compare_etag(Time.now.day)
         Gear.def_dataset_method(:by_created_at){order(:created_at)}
-        Gear.by_created_at.first(:name => params[:id])
+        present Gear.by_created_at.first(:name => params[:id])
       end
 
       get ':id/:version' do
@@ -48,7 +48,7 @@ module Chaindrive
         # all of the versions that match this value? In that case the query would be:
         # Gear.by_created_at.where(:name => params[:id], Sequel.like(:version, "#{params[:version]}%"))
         Gear.def_dataset_method(:by_created_at){order(:created_at)}
-        Gear.by_created_at.where(:name => params[:id], :version => params[:version])
+        present Gear.by_created_at.where(:name => params[:id], :version => params[:version])
       end
 
       post do
