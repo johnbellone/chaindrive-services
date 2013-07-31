@@ -1,6 +1,14 @@
+require 'chaindrive/api/v1'
+require 'chaindrive/api/helpers'
+
 module Chaindrive
   class API < Grape::API
-    version 'v1'
+    helpers do
+      def compare_etag(respond_etag)
+        error!("Not Modified", 304) if request.env['HTTP_ETAG'] == respond_etag.to_s
+        header "ETag", respond_etag.to_s
+      end
+    end
 
     # Setup the middleware for Rack::Cache so that we can save a little bit on the
     # number of database hits.
@@ -17,19 +25,7 @@ module Chaindrive
       provider :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET']
     end
 
-    namespace :gears do
-      get do
-        Gear.all
-      end
-
-      get ':id' do
-        Gear.where(:name => params[:id], :status => true).order(:created_at).limit(1)
-      end
-
-      get ':id/version/:version' do
-        Gear.where(:name => params[:id], :version => params[:version], :status => true)
-      end
-    end
-
+    # Mixin all of the versions of the API.
+    mount Chaindrive::APIv1
   end
 end
