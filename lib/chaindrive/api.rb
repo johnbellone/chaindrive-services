@@ -2,6 +2,14 @@ module Chaindrive
   class API < Grape::API
     version 'v1'
 
+    # Setup the middleware for Rack::Cache so that we can save a little bit on the
+    # number of database hits.
+    use Rack::Cache,
+      verbose: true,
+      metastore: 'tmp/meta',
+      entitystore: 'tmp/body',
+      allow_reload: true
+    
     # Provide authentication with GitHub so that we can properly use the API there
     # once someone adds a Gear to the registry. 
     use ::OmniAuth::Builder do 

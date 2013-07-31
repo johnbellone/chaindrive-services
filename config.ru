@@ -13,9 +13,4 @@ use Rack::Session::Cookie,
   path: '/',
   expire_after: 28800,
   secret: ENV['RACK_SESSION_COOKIE_SECRET']
-use Rack::Cache,
-  verbose: true,
-  metastore: 'tmp/meta',
-  entitystore: 'tmp/body',
-  allow_reload: true
 run Rack::Cascade.new [Chaindrive::API, Chaindrive::Web]
