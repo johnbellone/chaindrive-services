@@ -18,7 +18,7 @@ migration "initial migration" do
     column :version, String, :index => true, :null => false
     column :repository, String, :null => false
     column :status, TrueClass, :null => false, :default => true
-    column :created_at, Datetime, :null => false, :index => true
+    column :created_at, DateTime, :null => false, :index => true
     foreign_key :user_id, :users, :key => :id
   end
 end
