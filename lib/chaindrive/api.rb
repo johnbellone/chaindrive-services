@@ -1,11 +1,9 @@
-require 'grape'
-require 'chaindrive/database'
-
 module Chaindrive
   class API < Grape::API
     version 'v1'
 
-    use Rack::Session::Cookie
+    # Provide authentication with GitHub so that we can properly use the API there
+    # once someone adds a Gear to the registry. 
     use Omniauth::Builder do 
       provider :developer unless ENV['RACK_ENV'] == 'production'
       provider :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET']
