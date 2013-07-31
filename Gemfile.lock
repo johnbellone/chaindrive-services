@@ -28,6 +28,9 @@ GEM
       rack-accept
       rack-mount
       virtus
+    grape-entity (0.3.0)
+      activesupport
+      multi_json (>= 1.3.2)
     hashie (2.0.5)
     httpauth (0.2.0)
     i18n (0.6.4)
@@ -93,6 +96,7 @@ PLATFORMS
 DEPENDENCIES
   foreman
   grape
+  grape-entity
   newrelic-grape
   omniauth-github
   pg
