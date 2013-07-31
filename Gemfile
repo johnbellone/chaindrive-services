@@ -8,7 +8,6 @@ gem 'foreman'
 gem 'sinatra'
 gem 'sinatra-sequel'
 gem 'newrelic-grape'
-gem 'sequel_pg'
 gem 'pg'
 gem 'sqlite3', :group => :development
 
