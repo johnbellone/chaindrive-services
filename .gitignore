@@ -12,10 +12,9 @@ test/tmp
 test/version_tmp
 tmp
 log
+*.db
 
 # YARD artifacts
 .yardoc
 _yardoc
 doc/
-
-test.db
