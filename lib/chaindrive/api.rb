@@ -17,8 +17,8 @@ module Chaindrive
     # number of database hits.
     use Rack::Cache,
       verbose: true,
-      metastore: 'tmp/meta',
-      entitystore: 'tmp/body',
+      metastore: 'file:tmp/meta',
+      entitystore: 'file:tmp/body',
       allow_reload: true
     
     # Provide authentication with GitHub so that we can properly use the API there
