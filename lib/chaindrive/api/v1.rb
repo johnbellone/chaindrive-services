@@ -14,6 +14,7 @@ module Chaindrive
 
     namespace :users do
       get do
+        compare_etag(Time.now.day)        
         present User.all
       end
 
