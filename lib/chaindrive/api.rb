@@ -3,6 +3,9 @@ require 'chaindrive/api/helpers'
 
 module Chaindrive
   class API < Grape::API
+    default_format :json
+
+    # Define any helper methods that we want to make available inside of any endpoint.
     helpers do
       def compare_etag(respond_etag)
         error!("Not Modified", 304) if request.env['HTTP_ETAG'] == respond_etag.to_s
