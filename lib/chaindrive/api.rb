@@ -2,7 +2,7 @@ require 'chaindrive/api/v1'
 
 module Chaindrive
   class API < Grape::API
-    default_format :json
+    format :json
 
     # Define any helper methods that we want to make available inside of any endpoint.
     helpers do
