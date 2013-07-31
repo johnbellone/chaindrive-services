@@ -2,6 +2,8 @@ require 'sequel'
 
 module Chaindrive
   class User < Sequel::Model
+    one_to_many :gears
+
     def exists?(name)
       super.find(:name => name).exists?
     end

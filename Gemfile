@@ -3,6 +3,7 @@ ruby '2.0.0'
 
 gem 'grape'
 gem 'grape-entity'
+gem 'octokit', '~> 2.0.0rc1'
 gem 'omniauth-github'
 gem 'puma'
 gem 'foreman'

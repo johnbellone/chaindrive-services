@@ -1,6 +1,32 @@
 module Chaindrive
   class APIv1 < Grape::API
     version 'v1'
+
+    namespace :webhook do
+      namespace :gears do
+        desc "Webhook for GitHub push-hook requests."
+        post do
+          error!('Bad Request', 400) unless params[:payload]
+          event = params[:payload]
+        end
+      end
+    end
+
+    namespace :users do
+      get do
+        User.all
+      end
+
+      get ':id' do
+        compare_etag(Time.now.day)
+        User.first(:name => params[:id])
+      end
+
+      get ':id/gears' do
+        compare_etag(Time.now.day)
+        User.first(:name => params[:id]).gears.all
+      end
+    end
     
     namespace :gears do
       desc "Return all gears inside the registry."
@@ -12,12 +38,23 @@ module Chaindrive
       desc "Return the Gear with specified `id`."
       get ':id' do
         compare_etag(Time.now.day)
-        Gear.where(:name => params[:id], :status => true).order(:created_at).limit(1).first  
+        Gear.def_dataset_method(:by_created_at){order(:created_at)}
+        Gear.by_created_at.first(:name => params[:id])
       end
 
       get ':id/:version' do
         compare_etag(Time.now.day)
-        Gear.where(:name => params[:id], :version => params[:version], :status => true).limit(1).first
+        # TODO: Do we actually want to allow a fuzzy version, e.g. ~> 0.1, to return
+        # all of the versions that match this value? In that case the query would be:
+        # Gear.by_created_at.where(:name => params[:id], Sequel.like(:version, "#{params[:version]}%"))
+        Gear.def_dataset_method(:by_created_at){order(:created_at)}
+        Gear.by_created_at.where(:name => params[:id], :version => params[:version])
+      end
+
+      post do
+        # authenticate!
+        error!('Bad Request', 400) unless params[:id]
+        error!('Found', 302) if Gear.exists?(params[:id])
       end
 
     end
