@@ -1,6 +1,12 @@
-$:.unshift('lib').uniq!
+require File.expand_path('../config/environment', __FILE__)
 
-require 'chaindrive'
+if ENV['RACK_ENV'] == 'development'
+  puts "Loading NewRelic in developer mode..."
+  require 'new_relic/rack/developer_mode'
+  use NewRelic::Rack::DeveloperMode
+end
+
+NewRelic::Agent.manual_start
 
 use Rack::Session::Cookie, {
   domain: 'api.chaindrive.io',
