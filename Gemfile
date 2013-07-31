@@ -9,5 +9,6 @@ gem 'sinatra'
 gem 'sinatra-sequel'
 gem 'newrelic-grape'
 gem 'pg'
+gem 'rack-cache'
 gem 'sqlite3', :group => :development
 
