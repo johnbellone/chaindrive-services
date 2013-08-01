@@ -11,6 +11,14 @@ module Chaindrive
         error!("Not Modified", 304) if request.env['HTTP_ETAG'] == respond_etag.to_s
         header "ETag", respond_etag.to_s
       end
+
+      def current_user
+        false
+      end
+
+      def authenticate!
+        error!('Unauthorized', 401) unless current_user
+      end
     end
 
     # Setup the middleware for Rack::Cache so that we can save a little bit on the

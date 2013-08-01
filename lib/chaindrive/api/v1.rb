@@ -7,7 +7,7 @@ module Chaindrive
         desc "Webhook for GitHub push-hook requests."
         post do
           error!('Bad Request', 400) unless params[:payload]
-          event = params[:payload]
+          payload = JSON.parse(params[:payload])
         end
       end
     end
@@ -53,7 +53,7 @@ module Chaindrive
       end
 
       post do
-        # authenticate!
+        authenticate!
         error!('Bad Request', 400) unless params[:id]
         error!('Found', 302) if Gear.exists?(params[:id])
       end
