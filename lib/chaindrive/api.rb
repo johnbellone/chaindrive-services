@@ -1,5 +1,4 @@
 require 'chaindrive/api/v1'
-require 'chaindrive/auth'
 
 module Chaindrive
   class API < Grape::API
@@ -37,8 +36,16 @@ module Chaindrive
       provider :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET']
     end
 
+    # Support HTTP verbs for OmniAuth provider callbacks.
+    namespace :auth do
+      %w{get post}.each do |verb|
+        send(verb, ':provider/callback') do
+          logger.info env['omniauth.auth'].inspect
+        end
+      end
+    end
+
     # Mixin all of the versions of the API.
-    mount Chaindrive::Auth
     mount Chaindrive::APIv1
   end
 end
