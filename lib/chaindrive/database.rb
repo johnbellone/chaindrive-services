@@ -25,6 +25,6 @@ end
 
 migration "add hits to gear" do
   database.alter_table :gears do
-    add_column :hits, BigNum, :null => false, :default => 0
+    add_column :hits, Integer, :null => false, :default => 0
   end
 end
