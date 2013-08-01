@@ -2,7 +2,6 @@ require 'sequel'
 
 module Chaindrive
   class Gear < Sequel::Model
-    many_to_one :user
     set_primary_key [:name, :version]
 
     def hits!
@@ -18,6 +17,7 @@ module Chaindrive
       expose :name
       expose :version
       expose :repository
+      expose :hits
       expose :created_at
     end
   end

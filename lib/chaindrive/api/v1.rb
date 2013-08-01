@@ -12,33 +12,6 @@ module Chaindrive
       end
     end
 
-    namespace :users do
-      get do
-        compare_etag(Time.now.day)        
-        present User.all
-      end
-
-      get ':id' do
-        compare_etag(Time.now.day)
-
-        user = User.first(:name => params[:id])
-
-        error!('Not Found', 404) unless user
-
-        present user
-      end
-
-      get ':id/gears' do
-        compare_etag(Time.now.day)
-
-        user = User.first(:name => params[:id]).eager(:gears)
-
-        error!('Not Found', 404) unless user
-
-        present user.gears.all
-      end
-    end
-    
     namespace :gears do
       desc "Return all gears inside the registry."
       get do
@@ -71,12 +44,6 @@ module Chaindrive
 
         gear.hit!
         present gear
-      end
-
-      post do
-        authenticate!
-        error!('Bad Request', 400) unless params[:id]
-        error!('Found', 302) if Gear.exists?(params[:id])
       end
 
     end
