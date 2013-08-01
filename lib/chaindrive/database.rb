@@ -8,13 +8,23 @@ set :database, ENV['DATABASE_URL']
 # function. In this particular case it is the `users` and `gears` tables.
 migration "initial migration" do
   database.create_table! :gears do
-    primary_key [:name, :version], :name => 'PkGears'
-    column :name, String, :index => true, :null => false
-    column :version, String, :index => true, :null => false
-    column :repository, String, :null => false
-    column :status, TrueClass, :null => false, :default => true
+    primary_key :id
+    column :name, String, :index => true, :null => false, :unique => true
+    column :owner, String, :index => true, :null => false
+    column :url, String, :null => false, :unique => true
+    column :description, String
+    column :homepage, String
     column :created_at, DateTime, :null => false, :index => true
+    column :updated_at, DateTime, :null => false, :index => true
+  end
+
+  database.create_table! :gear_releases do
+    primary_key [:gear_id, :version], :name => 'PkGearRelease'
+    foreign_key :gear_id
+    column :version, String, :index => true, :null => false
     column :hits, Integer, :null => false, :default => 0
+    column :created_at, DateTime, :null => false, :index => true
+    column :updated_at, DateTime, null: false, index: true
   end
 end
 

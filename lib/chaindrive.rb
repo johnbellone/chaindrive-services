@@ -4,8 +4,8 @@ require 'omniauth'
 require 'logger'
 
 module Chaindrive
-  autoload :Web, 'chaindrive/web'
+  autoload :Webhook, 'chaindrive/webhook'
   autoload :API, 'chaindrive/api'
+  autoload :DB, 'chaindrive/database'
   autoload :Gear, 'chaindrive/models/gear'
-  autoload :User, 'chaindrive/models/user'
 end

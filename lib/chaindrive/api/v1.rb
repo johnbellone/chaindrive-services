@@ -2,16 +2,6 @@ module Chaindrive
   class APIv1 < Grape::API
     version 'v1'
 
-    namespace :webhook do
-      namespace :gears do
-        desc "Webhook for GitHub push-hook requests."
-        post do
-          error!('Bad Request', 400) unless params[:payload]
-          payload = JSON.parse(params[:payload])
-        end
-      end
-    end
-
     namespace :gears do
       desc "Return all gears inside the registry."
       get do

@@ -2,23 +2,24 @@ require 'sequel'
 
 module Chaindrive
   class Gear < Sequel::Model
-    set_primary_key [:name, :version]
+    one_to_many :gear_releases
+    set_primary_key :id
 
-    def hits!
-      self.hits += 1
-      self.save(:validate => false)
+    def hits
+      gear_releases.sum(:hits)
     end
 
-    def exists?(name)
+    def self.exists?(name)
       super.find(:name => name).exists?
     end
 
     class Entity < Grape::Entity
       expose :name
-      expose :version
+      expose :owner
       expose :repository
       expose :hits
-      expose :created_at
+      expose :homepage
+      expose :created_at, :updated_at
     end
   end
 end
