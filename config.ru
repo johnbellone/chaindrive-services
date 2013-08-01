@@ -9,7 +9,7 @@ end
 NewRelic::Agent.manual_start
 
 use Rack::Session::Cookie, 
-  domain: 'api.chaindrive.io',
+  domain: 'registry.chaindrive.io',
   path: '/',
   expire_after: 28800,
   secret: ENV['RACK_SESSION_COOKIE_SECRET']

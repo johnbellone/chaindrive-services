@@ -46,6 +46,6 @@ module Chaindrive
     end
 
     # Mixin all of the versions of the API.
-    mount Chaindrive::APIv1
+    mount Chaindrive::APIv1 => '/api'
   end
 end
