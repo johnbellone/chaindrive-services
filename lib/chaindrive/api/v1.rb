@@ -40,16 +40,17 @@ module Chaindrive
       get ':id' do
         compare_etag(Time.now.day)
         Gear.def_dataset_method(:by_created_at){reverse_order(:created_at)}
-        present Gear.by_created_at.first(:name => params[:id])
+        gear = Gear.by_created_at.first(:name => params[:id])
+        present gear
+        gear.hit!
       end
 
       get ':id/:version' do
         compare_etag(Time.now.day)
-        # TODO: Do we actually want to allow a fuzzy version, e.g. ~> 0.1, to return
-        # all of the versions that match this value? In that case the query would be:
-        # Gear.by_created_at.where(:name => params[:id], Sequel.like(:version, "#{params[:version]}%"))
         Gear.def_dataset_method(:by_created_at){reverse_order(:created_at)}
-        present Gear.by_created_at.where(:name => params[:id], :version => params[:version])
+        gear = Gear.by_created_at.where(:name => params[:id], :version => params[:version])
+        present gear
+        gear.hit!
       end
 
       post do

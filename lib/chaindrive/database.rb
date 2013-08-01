@@ -22,3 +22,9 @@ migration "initial migration" do
     foreign_key :user_id, :users, :key => :id
   end
 end
+
+migration "add hits to gear" do
+  database.alter_table :gears do
+    add_column :hits, BigNum, :null => false, :default => 0
+  end
+end
