@@ -8,4 +8,5 @@ module Chaindrive
   autoload :API, 'chaindrive/api'
   autoload :Gear, 'chaindrive/gear'
   autoload :User, 'chaindrive/user'
+  autoload :Auth, 'chaindrive/auth'
 end
