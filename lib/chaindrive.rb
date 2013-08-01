@@ -1,6 +1,5 @@
 require 'sinatra'
 require 'grape'
-require 'omniauth'
 require 'logger'
 
 module Chaindrive
