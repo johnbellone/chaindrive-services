@@ -20,12 +20,22 @@ module Chaindrive
 
       get ':id' do
         compare_etag(Time.now.day)
-        present User.first(:name => params[:id])
+
+        user = User.first(:name => params[:id])
+
+        error!('Not Found', 404) unless user
+
+        present user
       end
 
       get ':id/gears' do
         compare_etag(Time.now.day)
-        present User.first(:name => params[:id]).gears.all
+
+        user = User.first(:name => params[:id]).eager(:gears)
+
+        error!('Not Found', 404) unless user
+
+        present user.gears.all
       end
     end
     
@@ -39,18 +49,26 @@ module Chaindrive
       desc "Return the Gear with specified `id`."
       get ':id' do
         compare_etag(Time.now.day)
+
         Gear.def_dataset_method(:by_created_at){reverse_order(:created_at)}
         gear = Gear.by_created_at.first(:name => params[:id])
-        present gear
+
+        error!('Not Found', 404) unless gear
+
         gear.hit!
+        present gear
       end
 
       get ':id/:version' do
         compare_etag(Time.now.day)
+
         Gear.def_dataset_method(:by_created_at){reverse_order(:created_at)}
         gear = Gear.by_created_at.where(:name => params[:id], :version => params[:version])
-        present gear
+
+        error!('Not Found', 404) unless gear
+
         gear.hit!
+        present gear
       end
 
       post do
