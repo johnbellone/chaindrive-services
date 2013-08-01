@@ -1,4 +1,5 @@
 require 'chaindrive/api/v1'
+require 'chaindrive/auth'
 
 module Chaindrive
   class API < Grape::API

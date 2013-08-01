@@ -6,7 +6,6 @@ require 'logger'
 module Chaindrive
   autoload :Web, 'chaindrive/web'
   autoload :API, 'chaindrive/api'
-  autoload :Gear, 'chaindrive/gear'
-  autoload :User, 'chaindrive/user'
-  autoload :Auth, 'chaindrive/auth'
+  autoload :Gear, 'chaindrive/models/gear'
+  autoload :User, 'chaindrive/models/user'
 end
