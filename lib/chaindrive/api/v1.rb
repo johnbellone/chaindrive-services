@@ -62,6 +62,8 @@ module Chaindrive
       get ':id/:version' do
         compare_etag(Time.now.day)
 
+        params[:version].slice!(0,1) if params[:version].chr.downcase == 'v'
+
         Gear.def_dataset_method(:by_created_at){reverse_order(:created_at)}
         gear = Gear.by_created_at.where(:name => params[:id], :version => params[:version])
 
