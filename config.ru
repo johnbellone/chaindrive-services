@@ -1,4 +1,5 @@
 require File.expand_path('../config/environment', __FILE__)
+require File.expand_path('../config/database', __FILE__)
 
 if ENV['RACK_ENV'] == 'development'
   puts "Loading NewRelic in developer mode..."
