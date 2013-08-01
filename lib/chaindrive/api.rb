@@ -22,6 +22,6 @@ module Chaindrive
       allow_reload: true
 
     # Mixin all of the versions of the API.
-    mount Chaindrive::APIv1 => '/api'
+    mount Chaindrive::APIv1
   end
 end
