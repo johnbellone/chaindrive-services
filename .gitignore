@@ -13,7 +13,7 @@ test/version_tmp
 tmp
 log
 *.db
-
+/bin
 # YARD artifacts
 .yardoc
 _yardoc
