@@ -19,7 +19,9 @@ module Chaindrive
       expose :repository
       expose :hits
       expose :homepage
-      expose :created_at, :updated_at
+      expose :created_at
+      expose :updated_at
+      expose :gear_releases
     end
   end
 end

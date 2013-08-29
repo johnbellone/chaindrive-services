@@ -11,7 +11,8 @@ module Chaindrive
     class Entity < Grape::Entity
       expose :version
       expose :hits
-      expose :created_at, :updated_at
+      expose :created_at
+      expose :updated_at
     end
 
   end
