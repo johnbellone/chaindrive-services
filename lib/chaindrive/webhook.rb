@@ -13,7 +13,7 @@ module Chaindrive
 
           # Only do something if the ref being pushed is a tag.
           ref = payload[:ref].match(/refs\/tags\/v?(\d(\.\d){,3})/)[0]
-          error!('OK', 200) unless ref          
+          error!('OK', 304) unless ref          
 
           # If the package already exists then we just want to update the time and
           # possibly the description fields. We need the reference to create the release.
