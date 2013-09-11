@@ -1,11 +1,12 @@
+# coding: utf-8
 require 'sinatra/sequel'
 
-# Setup the database connection using the environment string. This makes us agnostic
-# from a single database adapter and works out of the box with Heroku.
+# Setup the database connection using the environment string. This makes us
+# agnostic from a single database adapter and works out of the box with Heroku.
 set :database, ENV['DATABASE_URL']
 
-# Define the database tables that are initially needed for the application to properly
-# function. In this particular case it is the `users` and `gears` tables.
+# Define the database tables that are initially needed for the application to
+# properly function. In this particular case it is the `users` and `gears`.
 migration "initial migration" do
   database.create_table! :gears do
     primary_key :id

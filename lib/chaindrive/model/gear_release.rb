@@ -1,3 +1,4 @@
+# encoding: utf-8
 module Chaindrive
   class GearRelease < Sequel::Model
     many_to_one :gear

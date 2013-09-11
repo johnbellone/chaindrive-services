@@ -1,3 +1,4 @@
+# coding: utf-8
 module Chaindrive
   class APIv1 < Grape::API
     version 'v1'
@@ -14,7 +15,8 @@ module Chaindrive
         compare_etag(Time.now.day)
 
         Gear.def_dataset_method(:by_created_at){reverse_order(:created_at)}
-        gear = Gear.by_created_at.first(:name => params[:id])
+        criteria = {name: params['id']}
+        gear = Gear.by_created_at.first(criteria)
 
         error!('Not Found', 404) unless gear
 
@@ -25,10 +27,12 @@ module Chaindrive
       get ':id/:version' do
         compare_etag(Time.now.day)
 
-        params[:version].slice!(0,1) if params[:version].chr.downcase == 'v'
+        version = params['version']
+        version.slice!(0,1) if version.chr.downcase == 'v'
 
+        criteria = {name: params['id'], version: params['version']}
         Gear.def_dataset_method(:by_created_at){reverse_order(:created_at)}
-        gear = Gear.by_created_at.where(:name => params[:id], :version => params[:version])
+        gear = Gear.by_created_at.where(criteria)
 
         error!('Not Found', 404) unless gear
 

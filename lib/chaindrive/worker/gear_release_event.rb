@@ -1,3 +1,4 @@
+# coding: utf-8
 module Chaindrive::Worker
   class GearReleaseEvent 
     include Sidekiq::Worker
