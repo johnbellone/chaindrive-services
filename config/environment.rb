@@ -10,4 +10,23 @@ require 'bundler/setup'
 Bundler.require :default, ENV['RACK_ENV']
 
 require 'chaindrive'
-require 'rack'
+
+# Set a default logger that for production environments will write to the
+# system log. From there we can pipe that to logstash.
+if Chaindrive.development?
+  require 'logger'
+  $logger = Logger.new($stdout)
+  $logger.level = Logger::DEBUG
+else
+  require 'syslogger'
+  $logger = Syslogger.new('chaindrive', Syslog::LOG_PID, Syslog::LOG_LOCAL0)
+  $logger.level = Logger::INFO
+end
+
+
+
+
+
+
+
+

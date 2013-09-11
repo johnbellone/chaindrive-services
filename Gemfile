@@ -9,8 +9,11 @@ gem 'foreman'
 gem 'sinatra'
 gem 'sinatra-sequel'
 gem 'newrelic-grape'
-gem 'pg', :group => :production
 gem 'rack-cache'
 gem 'omniauth-github'
 gem 'sqlite3', :group => :development
 
+group :production do
+  gem 'pg'
+  gem 'syslogger'
+end

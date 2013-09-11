@@ -10,6 +10,7 @@ end
 
 NewRelic::Agent.manual_start
 
+use Rack::CommonLogger, $logger
 use Rack::Session::Cookie, 
   domain: 'registry.chaindrive.io',
   path: '/',
