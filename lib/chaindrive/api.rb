@@ -1,4 +1,6 @@
 # coding: utf-8
+require 'chaindrive/api/v1'
+
 module Chaindrive
   class API < Grape::API
     default_format :json

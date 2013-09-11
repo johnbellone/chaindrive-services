@@ -39,7 +39,7 @@ module Chaindrive
         gear.hit!
         present gear
       end
-
     end
+
   end
 end

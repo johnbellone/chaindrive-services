@@ -1,7 +1,6 @@
 # coding: utf-8
 require 'chaindrive/webhook'
 require 'chaindrive/api'
-require 'chaindrive/api/v1'
 require 'chaindrive/model/gear'
 require 'chaindrive/model/gear_release'
 require 'chaindrive/worker/gear_release_event'
