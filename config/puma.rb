@@ -32,4 +32,6 @@ bind 'unix://tmp/run/puma.sock'
 # can also use the “ssl_bind” option.
 # ssl_bind '127.0.0.1', '9292', { key: path_to_key, cert: path_to_cert }
 
+# Load up the application prior to receiving any requests.
+preload_app!
 
