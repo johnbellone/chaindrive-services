@@ -11,6 +11,7 @@ gem 'sinatra-sequel'
 gem 'newrelic-grape'
 gem 'rack-cache'
 gem 'omniauth-github'
+gem 'sidekiq'
 gem 'sqlite3', :group => :development
 
 group :production do
