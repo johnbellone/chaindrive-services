@@ -17,4 +17,6 @@ log
 # YARD artifacts
 .yardoc
 _yardoc
-doc/
+/doc
+/pkg
+/vendor

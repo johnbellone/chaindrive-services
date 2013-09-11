@@ -1,0 +1,5 @@
+#!/bin/sh
+# Usage: script/bootstrap
+
+bundle install --binstubs --local --path vendor/cache
+bundle package --all
