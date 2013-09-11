@@ -1,8 +1,9 @@
-chaindrive-registry
+chaindrive-services
 ===================
 
-A simple Rack application to keep a record of the Gears that have been registered.
+A [Rack][] application that provides [Chaindrive][2] services and hooks. The
+[Chaindrive][2] application utilizes this API as an endpoint to lookup
+component registration information.
 
-The [chaindrive][1] application will contact this using an API toolkit of sorts.
-
-[1]: https://github.com/johnbellone/chaindrive
+[1]: https://github.com/rack/rack
+[2]: https://github.com/chaindrive/chaindrive
