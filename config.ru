@@ -11,6 +11,12 @@ end
 NewRelic::Agent.manual_start
 
 use Rack::CommonLogger, $logger
+use Rack::Cache do
+  set :verbose, true
+  set :metastore, Chaindrive.cache_metastore
+  set :entitystore, Chaindrive.cache_entitystore
+  set :allow_reload, true if Chaindrive.development?
+end
 use Rack::Session::Cookie, 
   domain: 'registry.chaindrive.io',
   path: '/',
