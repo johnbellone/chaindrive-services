@@ -1,5 +1,3 @@
-require 'sequel'
-
 module Chaindrive
   class Gear < Sequel::Model
     one_to_many :gear_releases
