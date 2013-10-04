@@ -3,7 +3,7 @@ require 'sinatra/asset_pipeline'
 
 module Chaindrive
   class Web < Sinatra::Base
-    include Sinatra::AssetPipeline
+    register Sinatra::AssetPipeline
 
     set :public_folder, File.expand_path('../../public', __FILE__)
   end
