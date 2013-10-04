@@ -7,12 +7,20 @@ gem 'octokit', '~> 2.3'
 gem 'puma'
 gem 'foreman'
 gem 'sinatra'
+gem 'sinatra-contrib'
 gem 'sinatra-sequel'
 gem 'newrelic-grape'
 gem 'rack-cache'
 gem 'omniauth-github'
 gem 'sidekiq'
-gem 'sqlite3', :group => :development
+gem 'rake'
+
+group :development do
+  gem 'sqlite3'
+  gem 'therubyracer'
+  gem 'sprockets'
+  gem 'less'
+end
 
 group :production do
   gem 'pg'
