@@ -3,7 +3,7 @@ ruby '2.0.0'
 
 gem 'grape'
 gem 'grape-entity'
-gem 'octokit', '~> 2.1'
+gem 'octokit', '~> 2.3'
 gem 'puma'
 gem 'foreman'
 gem 'sinatra'
