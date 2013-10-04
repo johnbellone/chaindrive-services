@@ -1,12 +1,13 @@
 {
-  "name": "chaindrive-registry",
+  "name": "chaindrive-services",
   "version": "0.0.0",
   "dependencies": {
     "bootstrap": "~3.0.0",
     "font-awesome": "~3.2.1",
     "modernizr": "~2.6.2",
     "jquery": "~1.9.1",
-    "angular": "~1.0.8"
+    "angular": "~1.0.8",
+    "html5-boilerplate": "~4.3.0"
   },
   "devDependencies": {}
 }
