@@ -3,7 +3,14 @@
   "version": "0.1.0",
   "ignore": [
     "**/.*",
-    "node_modules",
-    "components"
-  ]
+    "app/node_modules",
+    "app/components"
+  ],
+  "dependencies": {
+    "jquery": "~2.0",
+    "bootstrap": "~3.0",
+    "font-awesome": "~3.2",
+    "html5-boilerplate": "~4.3",
+    "angular": "~1.0.8"
+  }
 }
