@@ -1,6 +1,6 @@
 # coding: utf-8
-module Chaindrive
-  class APIv1 < Grape::API
+module Chaindrive::API
+  class V1 < Grape::API
     version 'v1', using: :path
 
     namespace :gears do
