@@ -1,15 +1,15 @@
 # coding: utf-8
 module Chaindrive::Worker
-  class GearReleaseEvent 
+  class GearReleaseEvent
     include Sidekiq::Worker
 
     def perform(payload)
-      logger.debug {"Payload: #{payload.inspect}"}
+      logger.debug "Payload: #{payload.inspect}"
       repository = payload['repository']
 
       begin
         ref = payload['ref'].match(/refs\/tags\/v?(\d(\.\d){,3})/)[0]
-        
+
         # If the package already exists then we just want to update
         # the time and possibly the description fields. We need the
         # reference to create the release.
@@ -21,8 +21,8 @@ module Chaindrive::Worker
           g.created_at = repository['created_at']
         end
 
-        logger.debug {'Gear: '+gear.inspect}
-          
+        logger.debug "Gear: #{gear.inspect}"
+
         gear.description = repository['description']
         gear.updated_at = repository['pushed_at']
         gear.save
@@ -38,12 +38,12 @@ module Chaindrive::Worker
           gr.created_at = repository['pushed_at']
         end
 
-        logger.debug {'Release: '+release.inspect}
+        logger.debug "Release: #{release.inspect}"
 
         release.updated_at = repository['pushed_at']
         release.save
-      rescue Exception => e
-        logger.error {'Exception: '+e.message}
+      rescue StandardError => e
+        logger.error "Exception: #{e.message}"
         raise
       end
     end
