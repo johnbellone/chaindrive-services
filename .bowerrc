@@ -1,4 +1,3 @@
 {
-  "directory": "app/components",
-  "tmp": "tmp"
+    "directory": "app/bower_components"
 }
