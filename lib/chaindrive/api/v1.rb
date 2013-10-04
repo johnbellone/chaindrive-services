@@ -1,43 +1,46 @@
 # coding: utf-8
-module Chaindrive::API
-  class V1 < Grape::API
-    version 'v1', using: :path
+module Chaindrive
+  module API
 
-    namespace :gears do
-      desc "Return all gears inside the registry."
-      get do
-        compare_etag(Time.now.day)
-        present Gear.all
-      end
+    class V1 < Grape::API
+      version 'v1', using: :path
 
-      desc "Return the Gear with specified `id`."
-      get ':id' do
-        compare_etag(Time.now.day)
+      namespace :gears do
+        desc "Return all gears inside the registry."
+        get do
+          compare_etag(Time.now.day)
+          present Gear.all
+        end
 
-        Gear.def_dataset_method(:by_created_at){reverse_order(:created_at)}
-        criteria = {name: params['id']}
-        gear = Gear.by_created_at.first(criteria)
+        desc "Return the Gear with specified `id`."
+        get ':id' do
+          compare_etag(Time.now.day)
 
-        error!('Not Found', 404) unless gear
+          Gear.def_dataset_method(:by_created_at){reverse_order(:created_at)}
+          criteria = {name: params['id']}
+          gear = Gear.by_created_at.first(criteria)
 
-        gear.hit!
-        present gear
-      end
+          error!('Not Found', 404) unless gear
 
-      get ':id/:version' do
-        compare_etag(Time.now.day)
+          gear.hit!
+          present gear
+        end
 
-        version = params['version']
-        version.slice!(0,1) if version.chr.downcase == 'v'
+        get ':id/:version' do
+          compare_etag(Time.now.day)
 
-        criteria = {name: params['id'], version: params['version']}
-        Gear.def_dataset_method(:by_created_at){reverse_order(:created_at)}
-        gear = Gear.by_created_at.where(criteria)
+          version = params['version']
+          version.slice!(0,1) if version.chr.downcase == 'v'
 
-        error!('Not Found', 404) unless gear
+          criteria = {name: params['id'], version: params['version']}
+          Gear.def_dataset_method(:by_created_at){reverse_order(:created_at)}
+          gear = Gear.by_created_at.where(criteria)
 
-        gear.hit!
-        present gear
+          error!('Not Found', 404) unless gear
+
+          gear.hit!
+          present gear
+        end
       end
     end
 

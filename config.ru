@@ -2,7 +2,7 @@
 require File.expand_path('../config/boot', __FILE__)
 
 if Chaindrive.development?
-  puts "Loading NewRelic in developer mode..."
+  $logger.info 'Loading NewRelic in developer mode...'
   require 'new_relic/rack/developer_mode'
   use NewRelic::Rack::DeveloperMode
   use OmniAuth::Strategies::Developer
@@ -17,9 +17,10 @@ use Rack::Cache do
   set :entitystore, Chaindrive.cache_entitystore
   set :allow_reload, true if Chaindrive.development?
 end
-use Rack::Session::Cookie,
+use Rack::Session::Cookie, {
   domain: 'chaindrive.io',
   path: '/',
   expire_after: 28800,
   secret: Chaindrive.session_cookie
-run Rack::Cascade.new [Chaindrive::API, Chaindrive::Webhook]
+}
+run Rack::Cascade.new [Chaindrive::Server, Chaindrive::Web]
