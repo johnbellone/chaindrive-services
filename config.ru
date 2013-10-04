@@ -1,3 +1,4 @@
+# coding: utf-8
 require File.expand_path('../config/boot', __FILE__)
 
 if Chaindrive.development?
@@ -16,8 +17,8 @@ use Rack::Cache do
   set :entitystore, Chaindrive.cache_entitystore
   set :allow_reload, true if Chaindrive.development?
 end
-use Rack::Session::Cookie, 
-  domain: 'registry.chaindrive.io',
+use Rack::Session::Cookie,
+  domain: 'chaindrive.io',
   path: '/',
   expire_after: 28800,
   secret: Chaindrive.session_cookie

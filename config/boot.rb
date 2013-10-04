@@ -16,5 +16,5 @@ else
   $logger.level = Logger::INFO
 end
 
-Grape::API.logger = $logger if defined?(Sidekiq)
+Grape::API.logger = $logger if defined?(Grape)
 Sidekiq.logger = $logger if defined?(Sidekiq)

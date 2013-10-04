@@ -11,12 +11,3 @@ ENV['RACK_CACHE_ENTITY_STORE'] ||= 'tmp:/entity'
 require 'rubygems'
 require 'bundler/setup'
 Bundler.require :default, ENV['RACK_ENV']
-
-
-
-
-
-
-
-
-
