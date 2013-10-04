@@ -14,6 +14,7 @@ else
   require 'syslogger'
   $logger = Syslogger.new('chaindrive', Syslog::LOG_PID, Syslog::LOG_LOCAL0)
   $logger.level = Logger::INFO
+  $logger.level = Logger::DEBUG if ENV['CHAINDRIVE_DEBUG']
 end
 
 Grape::API.logger = $logger if defined?(Grape)

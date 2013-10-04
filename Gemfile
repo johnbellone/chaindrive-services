@@ -10,6 +10,13 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'sinatra-sequel'
 gem 'sinatra-asset-pipeline'
+gem 'sprockets'
+gem 'sprockets-helpers'
+gem 'sprockets-sass'
+gem 'therubyracer'
+gem 'less'
+gem 'coffee-script'
+gem 'uglifier'
 gem 'newrelic-grape'
 gem 'rack-cache'
 gem 'omniauth-github'
@@ -18,9 +25,7 @@ gem 'rake'
 
 group :development do
   gem 'sqlite3'
-  gem 'therubyracer'
-  gem 'sprockets'
-  gem 'less'
+  gem 'guard-sprockets2'
 end
 
 group :production do
