@@ -1,5 +1,4 @@
 source "https://rubygems.org"
-ruby '2.0.0'
 
 gem 'grape'
 gem 'grape-entity'
@@ -23,9 +22,13 @@ gem 'omniauth-github'
 gem 'sidekiq'
 gem 'rake'
 
+group :test, :development do
+  gem 'guard-minitest'
+  gem 'guard-sprockets2'
+end
+
 group :development do
   gem 'sqlite3'
-  gem 'guard-sprockets2'
 end
 
 group :production do
