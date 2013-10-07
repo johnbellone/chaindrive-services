@@ -1,4 +1,5 @@
 # coding: utf-8
+ENV['RACK_ENV'] ||= 'development'
 require File.join(File.dirname(__FILE__), 'environment')
 require File.join(File.dirname(__FILE__), 'database')
 
